@@ -10,17 +10,15 @@ weatherFomr.addEventListener('submit', (event) => {
   messageOne.textContent = ' loading...';
   messageTwo.textContent = '';
 
-  fetch(`http://localhost:3000/weather?address=${location}`).then(
-    (response) => {
-      response.json().then((data) => {
-        const { error, location, foreCastData } = data;
-        if (error) {
-          messageOne.textContent = error;
-        }
+  fetch(`weather?address=${location}`).then((response) => {
+    response.json().then((data) => {
+      const { error, location, foreCastData } = data;
+      if (error) {
+        messageOne.textContent = error;
+      }
 
-        messageOne.textContent = foreCastData;
-        messageTwo.textContent = location;
-      });
-    }
-  );
+      messageOne.textContent = foreCastData;
+      messageTwo.textContent = location;
+    });
+  });
 });
